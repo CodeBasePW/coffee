@@ -11,6 +11,11 @@ public class CoffeeStack
 		stack = new ItemStack(item, stackSize);
 	}
 	
+	public CoffeeStack(CoffeeItemTool item, int stackSize)
+	{
+		stack = new ItemStack(item, stackSize);
+	}
+	
 	public ItemStack getStack()
 	{
 		return stack;

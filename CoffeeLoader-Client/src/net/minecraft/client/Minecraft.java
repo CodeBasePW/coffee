@@ -304,7 +304,7 @@ public abstract class Minecraft
     {
         if(minecraftDir == null)
         {
-            minecraftDir = getAppDir("minecraft");
+            minecraftDir = getAppDir("coffee");
         }
         return minecraftDir;
     }

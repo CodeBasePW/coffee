@@ -6,7 +6,7 @@ package net.minecraft.src;
 
 public final class ItemStack
 {
-
+	
     public ItemStack(Block block)
     {
         this(block, 1);

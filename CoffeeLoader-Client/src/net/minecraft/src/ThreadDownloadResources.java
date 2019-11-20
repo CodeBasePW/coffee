@@ -10,6 +10,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import net.minecraft.client.Minecraft;
 import org.w3c.dom.*;
 
+import me.moderator_man.coffee.CoffeeLoader;
+
 public class ThreadDownloadResources extends Thread
 {
 
@@ -120,7 +122,9 @@ public class ThreadDownloadResources extends Thread
             {
                 file.getParentFile().mkdirs();
                 String s2 = s.replaceAll(" ", "%20");
-                downloadResource(new URL(url, s2), file, l);
+                //downloadResource(new URL(url, s2), file, l);
+                //TODO: moderator_man
+                downloadResource(new URL(CoffeeLoader.getCoffeeLoader().getResourceConverter().convertResource(s)), file, l);
                 if(closing)
                 {
                     return;

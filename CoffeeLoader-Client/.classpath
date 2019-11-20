@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="C:/Users/moderator_man/Documents/projects/CoffeeLoader/jars/bin/lwjgl_util.jar"/>
 	<classpathentry kind="lib" path="C:/Users/moderator_man/Documents/projects/CoffeeLoader/jars/bin/minecraft.jar"/>
 	<classpathentry kind="lib" path="C:/Users/moderator_man/Documents/projects/CoffeeLoader/jars/minecraft_server.jar"/>
+	<classpathentry kind="lib" path="C:/Users/moderator_man/Documents/projects/CoffeeLoader/jars/bin/json-20180813.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

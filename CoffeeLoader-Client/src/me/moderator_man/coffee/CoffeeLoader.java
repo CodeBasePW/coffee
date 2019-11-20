@@ -15,6 +15,7 @@ import me.moderator_man.coffee.impl.ModManager;
 import me.moderator_man.coffee.impl.crafting.CraftingManager;
 import me.moderator_man.coffee.impl.debug.DebugMod;
 import me.moderator_man.coffee.impl.textures.TextureManager;
+import me.moderator_man.coffee.util.ResourceConverter;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityMobs;
 import net.minecraft.src.Item;
@@ -35,16 +36,20 @@ public class CoffeeLoader
 	private TextureManager textureManager;
 	private ModManager modManager;
 	private CraftingManager craftingManager;
+	private ResourceConverter resourceConverter;
 	
 	public CoffeeLoader()
 	{
 		textureManager = new TextureManager();
 		modManager = new ModManager();
 		craftingManager = new CraftingManager();
+		resourceConverter = new ResourceConverter();
 	}
 	
 	public void onEnable(String[] args)
 	{
+		resourceConverter.onEnable();
+		
 		String dir = "mods";
 		
 		File fDir = new File(dir);
@@ -110,6 +115,11 @@ public class CoffeeLoader
 	public CraftingManager getCraftingManager()
 	{
 		return craftingManager;
+	}
+	
+	public ResourceConverter getResourceConverter()
+	{
+		return resourceConverter;
 	}
 	
 	public void loadMods(String dir)

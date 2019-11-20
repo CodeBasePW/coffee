@@ -8,7 +8,11 @@ import java.util.Random;
 
 public class Block
 {
-
+	protected boolean hasCustomSheet = false;
+	protected String customSheet = "";
+	public boolean hasCustomSheet() { return hasCustomSheet; }
+	public String getCustomSheet() { return customSheet; }
+	
     protected Block(int i, Material material)
     {
         stepSound = soundPowderFootstep;

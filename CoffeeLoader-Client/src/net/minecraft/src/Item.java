@@ -7,7 +7,18 @@ import java.util.Random;
 
 public class Item
 {
-
+	//TODO: moderator_man
+	protected boolean hasCustomSheet = false;
+	protected String customSheet = "";
+	public boolean hasCustomSheet()
+	{
+		return hasCustomSheet;
+	}
+	public String getCustomSheet()
+	{
+		return customSheet;
+	}
+	
     protected Item(int i)
     {
         maxStackSize = 64;

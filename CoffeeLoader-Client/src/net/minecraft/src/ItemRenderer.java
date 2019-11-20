@@ -30,8 +30,10 @@ public class ItemRenderer
             if(itemstack.itemID < 256)
             {
                 GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("/terrain.png"));
-            } else
-            {
+            } else if (Item.itemsList[itemstack.itemID].hasCustomSheet) {
+            	//TODO: moderator_man
+            	GL11.glBindTexture(3553, mc.renderEngine.getTexture(Item.itemsList[itemstack.itemID].customSheet));
+        	} else {
                 GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("/gui/items.png"));
             }
             Tessellator tessellator = Tessellator.instance;

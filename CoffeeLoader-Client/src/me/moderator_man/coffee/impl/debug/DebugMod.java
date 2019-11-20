@@ -2,14 +2,14 @@ package me.moderator_man.coffee.impl.debug;
 
 import me.moderator_man.coffee.impl.CoffeeMod;
 import me.moderator_man.coffee.impl.crafting.CoffeeRecipe;
-import me.moderator_man.coffee.impl.item.CoffeeItem;
+import me.moderator_man.coffee.impl.item.CoffeeItemTool;
 import me.moderator_man.coffee.impl.item.CoffeeStack;
 import me.moderator_man.coffee.impl.textures.Texture;
 import net.minecraft.src.Block;
 
 public class DebugMod extends CoffeeMod
 {
-	private final CoffeeItem debugItem = new DebugItem();
+	private final CoffeeItemTool debugItem = new DebugItem();
 	
 	public DebugMod()
 	{
@@ -18,7 +18,7 @@ public class DebugMod extends CoffeeMod
 	
 	public void load()
 	{
-		loader.getTextureManager().registerTexture("debug.debugItem", new Texture(loader.loadImage("/debugItem.png")));
+		loader.getTextureManager().registerTexture("debug.debugItems", new Texture(loader.loadImage("/debugItems.png")));
 		
 		loader.getCraftingManager().registerRecipe(new CoffeeRecipe(new CoffeeStack(debugItem, 1), new Object[] { "#", Character.valueOf('#'), Block.dirt }));
 	}

@@ -27,7 +27,7 @@ public class GameSettings
         keyBindBack = new KeyBinding("Back", 31);
         keyBindRight = new KeyBinding("Right", 32);
         keyBindJump = new KeyBinding("Jump", 57);
-        keyBindInventory = new KeyBinding("Inventory", 23);
+        keyBindInventory = new KeyBinding("Inventory", 18); //TODO: moderator_man (key = E)
         keyBindDrop = new KeyBinding("Drop", 16);
         keyBindChat = new KeyBinding("Chat", 20);
         keyBindToggleFog = new KeyBinding("Toggle fog", 33);
@@ -61,7 +61,7 @@ public class GameSettings
         keyBindBack = new KeyBinding("Back", 31);
         keyBindRight = new KeyBinding("Right", 32);
         keyBindJump = new KeyBinding("Jump", 57);
-        keyBindInventory = new KeyBinding("Inventory", 23);
+        keyBindInventory = new KeyBinding("Inventory", 18); //TODO: moderator_man (key = E)
         keyBindDrop = new KeyBinding("Drop", 16);
         keyBindChat = new KeyBinding("Chat", 20);
         keyBindToggleFog = new KeyBinding("Toggle fog", 33);

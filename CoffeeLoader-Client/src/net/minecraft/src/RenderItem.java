@@ -71,8 +71,10 @@ public class RenderItem extends Render
             if(itemstack.itemID < 256)
             {
                 loadTexture("/terrain.png");
-            } else
-            {
+            } else if (Item.itemsList[itemstack.itemID].hasCustomSheet) {
+            	//TODO: moderator_man
+            	loadTexture(Item.itemsList[itemstack.itemID].customSheet);
+            } else {
                 loadTexture("/gui/items.png");
             }
             Tessellator tessellator = Tessellator.instance;
@@ -137,8 +139,10 @@ public class RenderItem extends Render
             if(itemstack.itemID < 256)
             {
                 renderengine.bindTexture(renderengine.getTexture("/terrain.png"));
-            } else
-            {
+            } else if (Item.itemsList[itemstack.itemID].hasCustomSheet) {
+            	//TODO: moderator_man
+            	renderengine.bindTexture(renderengine.getTexture(Item.itemsList[itemstack.itemID].customSheet));
+            } else {
                 renderengine.bindTexture(renderengine.getTexture("/gui/items.png"));
             }
             renderTexturedQuad(i, j, (itemstack.getIconIndex() % 16) * 16, (itemstack.getIconIndex() / 16) * 16, 16, 16);
