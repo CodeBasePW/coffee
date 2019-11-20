@@ -77,15 +77,25 @@ import org.lwjgl.input.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.glu.GLU;
 
+import me.moderator_man.coffee.CoffeeLoader;
+
 // Referenced classes of package net.minecraft.client:
 //            MinecraftApplet
 
 public abstract class Minecraft
     implements Runnable
 {
-
+	private static Minecraft minecraftInstance;
+	public static Minecraft getMinecraft()
+	{
+		return minecraftInstance;
+	}
+	
     public Minecraft(Component component, Canvas canvas, MinecraftApplet minecraftapplet, int i, int j, boolean flag)
     {
+    	//TODO: moderator_man
+    	minecraftInstance = this;
+    	
         mainFrame = false;
         timer = new Timer(20F);
         field_6320_i = null;
@@ -1430,6 +1440,9 @@ public abstract class Minecraft
             s1 = args[1];
         }
         func_6269_a(s, s1);
+        
+        //TODO: moderator_man
+        CoffeeLoader.getCoffeeLoader().onEnable(args);
     }
 
     public PlayerController field_6327_b;

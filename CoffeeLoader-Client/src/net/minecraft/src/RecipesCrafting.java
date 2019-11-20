@@ -3,6 +3,8 @@ package net.minecraft.src;
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) braces deadcode 
 
+import me.moderator_man.coffee.CoffeeLoader;
+import me.moderator_man.coffee.impl.crafting.CoffeeRecipe;
 
 public class RecipesCrafting
 {
@@ -22,5 +24,8 @@ public class RecipesCrafting
         craftingmanager.addRecipe(new ItemStack(Block.workbench), new Object[] {
             "##", "##", Character.valueOf('#'), Block.planks
         });
+        
+        for (CoffeeRecipe recipe : CoffeeLoader.getCoffeeLoader().getCraftingManager().getAllRecipes())
+        	craftingmanager.addRecipe(recipe.getStack(), recipe.getRecipe());
     }
 }

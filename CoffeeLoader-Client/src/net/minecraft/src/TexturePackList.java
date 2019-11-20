@@ -5,7 +5,15 @@ package net.minecraft.src;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import me.moderator_man.coffee.CoffeeLoader;
+import me.moderator_man.coffee.impl.CoffeeMod;
+import me.moderator_man.coffee.impl.ModListEntry;
 import net.minecraft.client.Minecraft;
 
 public class TexturePackList
@@ -102,7 +110,13 @@ public class TexturePackList
 
     public List availableTexturePacks()
     {
-        return new ArrayList(availableTexturePacks);
+    	ArrayList<TexturePackBase> packs = new ArrayList<TexturePackBase>();
+    	packs.addAll(availableTexturePacks);
+    	
+    	for (CoffeeMod mod : CoffeeLoader.getCoffeeLoader().getModManager().getAllMods())
+    		packs.add(new ModListEntry(mod));
+    	
+        return packs;
     }
 
     private List availableTexturePacks;

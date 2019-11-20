@@ -5,10 +5,14 @@ package net.minecraft.src;
 
 import java.io.File;
 import java.util.List;
-import net.minecraft.client.Minecraft;
+
 import org.lwjgl.Sys;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+
+import me.moderator_man.coffee.CoffeeLoader;
+import me.moderator_man.coffee.impl.CoffeeMod;
+import me.moderator_man.coffee.impl.ModListEntry;
 
 public class GuiTexturePacks extends GuiScreen
 {
