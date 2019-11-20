@@ -1,4 +1,4 @@
-package me.moderator_man.coffee.impl.player;
+package me.moderator_man.coffee.impl.entity;
 
 import me.moderator_man.coffee.api.player.ICoffeePlayer;
 import me.moderator_man.coffee.impl.item.CoffeeItem;
