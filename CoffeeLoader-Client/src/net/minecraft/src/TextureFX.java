@@ -14,7 +14,7 @@ public class TextureFX
         field_1131_c = false;
         field_1130_d = 0;
         field_1129_e = 1;
-        field_1128_f = 0;
+        tileImage = 0;
         field_1126_b = i;
     }
 
@@ -24,11 +24,11 @@ public class TextureFX
 
     public void func_782_a(RenderEngine renderengine)
     {
-        if(field_1128_f == 0)
+        if(tileImage == 0)
         {
             GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, renderengine.getTexture("/terrain.png"));
         } else
-        if(field_1128_f == 1)
+        if(tileImage == 1)
         {
             GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, renderengine.getTexture("/gui/items.png"));
         }
@@ -39,5 +39,5 @@ public class TextureFX
     public boolean field_1131_c;
     public int field_1130_d;
     public int field_1129_e;
-    public int field_1128_f;
+    public int tileImage;
 }

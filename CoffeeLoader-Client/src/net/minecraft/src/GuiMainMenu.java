@@ -14,6 +14,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
 import me.moderator_man.coffee.CoffeeLoader;
+import me.moderator_man.coffee.impl.gui.GuiMods;
 
 public class GuiMainMenu extends GuiScreen
 {
@@ -90,8 +91,21 @@ public class GuiMainMenu extends GuiScreen
         }
         controlList.add(new GuiButton(1, width / 2 - 100, height / 4 + 48, "Singleplayer"));
         controlList.add(new GuiButton(2, width / 2 - 100, height / 4 + 72, "Multiplayer"));
-        controlList.add(new GuiButton(3, width / 2 - 100, height / 4 + 96, "Mods and Texture Packs"));
-        controlList.add(new GuiButton(0, width / 2 - 100, height / 4 + 120 + 12, "Options..."));
+        
+        //TODO: moderator_man
+        GuiButton texturePackBtn = new GuiButton(3, width / 2 - 0, height / 4 + 96, "Texture Packs");
+        GuiButton modsBtn = new GuiButton(4, width / 2 - 100, height / 4 + 96, "Mods");
+        texturePackBtn.width = texturePackBtn.width / 2;
+        modsBtn.width = modsBtn.width / 2;
+        controlList.add(texturePackBtn);
+        controlList.add(modsBtn);
+        
+        GuiButton quitButton = new GuiButton(5, width / 2 - 0, height / 4 + 120 + 12, "Quit");
+        GuiButton optionsBtn = new GuiButton(0, width / 2 - 100, height / 4 + 120 + 12, "Options...");
+        quitButton.width = quitButton.width / 2;
+        optionsBtn.width = optionsBtn.width / 2;
+        controlList.add(quitButton);
+        controlList.add(optionsBtn);
         if(mc.field_6320_i == null)
         {
             ((GuiButton)controlList.get(1)).enabled = false;
@@ -115,6 +129,13 @@ public class GuiMainMenu extends GuiScreen
         if(guibutton.id == 3)
         {
             mc.displayGuiScreen(new GuiTexturePacks(this));
+        }
+        //TODO: moderator_man
+        if (guibutton.id == 4)
+        	mc.displayGuiScreen(new GuiMods(this));
+        if (guibutton.id == 5)
+        {
+        	mc.shutdown();
         }
     }
 

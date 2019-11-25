@@ -11,9 +11,9 @@ public class ItemRenderer
 
     public ItemRenderer(Minecraft minecraft)
     {
-        field_9451_b = null;
-        field_9453_c = 0.0F;
-        field_9452_d = 0.0F;
+        itemToRender = null;
+        equippedProgress = 0.0F;
+        prevEquippedProgress = 0.0F;
         field_1357_e = new RenderBlocks();
         mc = minecraft;
     }
@@ -24,7 +24,7 @@ public class ItemRenderer
         if(itemstack.itemID < 256 && RenderBlocks.func_1219_a(Block.blocksList[itemstack.itemID].getRenderType()))
         {
             GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("/terrain.png"));
-            field_1357_e.func_1227_a(Block.blocksList[itemstack.itemID]);
+            field_1357_e.renderBlockOnInventory(Block.blocksList[itemstack.itemID]);
         } else
         {
             if(itemstack.itemID < 256)
@@ -129,7 +129,7 @@ public class ItemRenderer
 
     public void renderItemInFirstPerson(float f)
     {
-        float f1 = field_9452_d + (field_9453_c - field_9452_d) * f;
+        float f1 = prevEquippedProgress + (equippedProgress - prevEquippedProgress) * f;
         EntityPlayerSP entityplayersp = mc.thePlayer;
         GL11.glPushMatrix();
         GL11.glRotatef(((EntityPlayer) (entityplayersp)).prevRotationPitch + (((EntityPlayer) (entityplayersp)).rotationPitch - ((EntityPlayer) (entityplayersp)).prevRotationPitch) * f, 1.0F, 0.0F, 0.0F);
@@ -138,7 +138,7 @@ public class ItemRenderer
         GL11.glPopMatrix();
         float f2 = mc.theWorld.getLightBrightness(MathHelper.floor_double(((EntityPlayer) (entityplayersp)).posX), MathHelper.floor_double(((EntityPlayer) (entityplayersp)).posY), MathHelper.floor_double(((EntityPlayer) (entityplayersp)).posZ));
         GL11.glColor4f(f2, f2, f2, 1.0F);
-        ItemStack itemstack = field_9451_b;
+        ItemStack itemstack = itemToRender;
         if(((EntityPlayer) (entityplayersp)).fishEntity != null)
         {
             itemstack = new ItemStack(Item.stick.shiftedIndex);
@@ -162,6 +162,15 @@ public class ItemRenderer
             GL11.glRotatef(-f9 * 80F, 1.0F, 0.0F, 0.0F);
             f5 = 0.4F;
             GL11.glScalef(f5, f5, f5);
+            //TODO: moderator_man
+            boolean itemstackNull = itemstack == null;
+            boolean itemstackitemNull = itemstack.getItem() == null;
+            if (itemstackNull || itemstackitemNull)
+            {
+            	System.out.println(String.format("Error: (itemstackNull=%s,itemstackitemNull=%s)", itemstackNull, itemstackitemNull));
+            	mc.thePlayer.inventory.currentItem = Math.max(0, mc.thePlayer.inventory.currentItem - 1);
+            	return;
+            }
             if(itemstack.getItem().shouldRotateAroundWhenRendering())
             {
                 GL11.glRotatef(180F, 0.0F, 1.0F, 0.0F);
@@ -211,7 +220,7 @@ public class ItemRenderer
             GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, i);
             renderFireInFirstPerson(f);
         }
-        if(mc.thePlayer.func_345_I())
+        if(mc.thePlayer.isEntityInsideOpaqueBlock())
         {
             int j = MathHelper.floor_double(mc.thePlayer.posX);
             int l = MathHelper.floor_double(mc.thePlayer.posY);
@@ -324,15 +333,15 @@ public class ItemRenderer
         GL11.glDisable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
     }
 
-    public void func_895_a()
+    public void updateEquippedItem()
     {
-        field_9452_d = field_9453_c;
+        prevEquippedProgress = equippedProgress;
         EntityPlayerSP entityplayersp = mc.thePlayer;
         ItemStack itemstack = ((EntityPlayer) (entityplayersp)).inventory.getCurrentItem();
         ItemStack itemstack1 = itemstack;
         float f = 0.4F;
-        float f1 = itemstack1 != field_9451_b ? 0.0F : 1.0F;
-        float f2 = f1 - field_9453_c;
+        float f1 = itemstack1 != itemToRender ? 0.0F : 1.0F;
+        float f2 = f1 - equippedProgress;
         if(f2 < -f)
         {
             f2 = -f;
@@ -341,26 +350,26 @@ public class ItemRenderer
         {
             f2 = f;
         }
-        field_9453_c += f2;
-        if(field_9453_c < 0.1F)
+        equippedProgress += f2;
+        if(equippedProgress < 0.1F)
         {
-            field_9451_b = itemstack1;
+            itemToRender = itemstack1;
         }
     }
 
     public void func_9449_b()
     {
-        field_9453_c = 0.0F;
+        equippedProgress = 0.0F;
     }
 
     public void func_9450_c()
     {
-        field_9453_c = 0.0F;
+        equippedProgress = 0.0F;
     }
 
     private Minecraft mc;
-    private ItemStack field_9451_b;
-    private float field_9453_c;
-    private float field_9452_d;
+    private ItemStack itemToRender;
+    private float equippedProgress;
+    private float prevEquippedProgress;
     private RenderBlocks field_1357_e;
 }

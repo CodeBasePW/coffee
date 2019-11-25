@@ -77,10 +77,10 @@ public class EntityLiving extends Entity
         return 80;
     }
 
-    public void func_391_y()
+    public void onEntityUpdate()
     {
         prevSwingProgress = swingProgress;
-        super.func_391_y();
+        super.onEntityUpdate();
         if(rand.nextInt(1000) < field_4121_a++)
         {
             field_4121_a = -func_421_b();
@@ -90,7 +90,7 @@ public class EntityLiving extends Entity
                 worldObj.playSoundAtEntity(this, s, getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
             }
         }
-        if(isEntityAlive() && func_345_I())
+        if(isEntityAlive() && isEntityInsideOpaqueBlock())
         {
             canAttackEntity(null, 1);
         }
@@ -168,9 +168,9 @@ public class EntityLiving extends Entity
 
     }
 
-    public void func_350_p()
+    public void updateRidden()
     {
-        super.func_350_p();
+        super.updateRidden();
         field_9362_u = field_9361_v;
         field_9361_v = 0.0F;
     }

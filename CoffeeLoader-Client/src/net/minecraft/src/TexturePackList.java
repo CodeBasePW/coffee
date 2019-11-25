@@ -112,10 +112,6 @@ public class TexturePackList
     {
     	ArrayList<TexturePackBase> packs = new ArrayList<TexturePackBase>();
     	packs.addAll(availableTexturePacks);
-    	
-    	for (CoffeeMod mod : CoffeeLoader.getCoffeeLoader().getModManager().getAllMods())
-    		packs.add(new ModListEntry(mod));
-    	
         return packs;
     }
 

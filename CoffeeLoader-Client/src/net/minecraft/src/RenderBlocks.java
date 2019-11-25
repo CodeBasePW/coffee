@@ -788,7 +788,7 @@ public class RenderBlocks
         Tessellator tessellator = Tessellator.instance;
         float f = block.getBlockBrightness(blockAccess, i, j, k);
         tessellator.setColorOpaque_F(f, f, f);
-        func_1239_a(block, blockAccess.getBlockMetadata(i, j, k), i, j, k);
+        renderCrossedSquares(block, blockAccess.getBlockMetadata(i, j, k), i, j, k);
         return true;
     }
 
@@ -850,7 +850,7 @@ public class RenderBlocks
         tessellator.addVertexWithUV(d9, d1 + 1.0D, d2 - d13, f1, f2);
     }
 
-    public void func_1239_a(Block block, int i, double d, double d1, double d2)
+    public void renderCrossedSquares(Block block, int i, double d, double d1, double d2)
     {
         Tessellator tessellator = Tessellator.instance;
         int j = block.getBlockTextureFromSideAndMetadata(0, i);
@@ -1137,7 +1137,7 @@ public class RenderBlocks
         return 1.0F - f / (float)l;
     }
 
-    public void func_1243_a(Block block, World world, int i, int j, int k)
+    public void renderBlockFallingSand(Block block, World world, int i, int j, int k)
     {
         float f = 0.5F;
         float f1 = 1.0F;
@@ -1864,7 +1864,7 @@ public class RenderBlocks
         }
     }
 
-    public void func_1227_a(Block block)
+    public void renderBlockOnInventory(Block block)
     {
         byte byte0 = -1;
         Tessellator tessellator = Tessellator.instance;
@@ -1903,7 +1903,7 @@ public class RenderBlocks
         {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, -1F, 0.0F);
-            func_1239_a(block, byte0, -0.5D, -0.5D, -0.5D);
+            renderCrossedSquares(block, byte0, -0.5D, -0.5D, -0.5D);
             tessellator.draw();
         } else
         if(i == 13)

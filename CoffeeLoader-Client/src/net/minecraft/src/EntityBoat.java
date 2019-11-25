@@ -48,7 +48,7 @@ public class EntityBoat extends Entity
         prevPosZ = d2;
     }
 
-    public double func_402_h()
+    public double getMountedYOffset()
     {
         return (double)height * 0.0D - 0.30000001192092896D;
     }
@@ -289,7 +289,7 @@ public class EntityBoat extends Entity
         }
     }
 
-    public void func_366_i_()
+    public void updateRiderPosition()
     {
         if(riddenByEntity == null)
         {
@@ -298,7 +298,7 @@ public class EntityBoat extends Entity
         {
             double d = Math.cos(((double)rotationYaw * 3.1415926535897931D) / 180D) * 0.40000000000000002D;
             double d1 = Math.sin(((double)rotationYaw * 3.1415926535897931D) / 180D) * 0.40000000000000002D;
-            riddenByEntity.setPosition(posX + d, posY + func_402_h() + riddenByEntity.func_388_v(), posZ + d1);
+            riddenByEntity.setPosition(posX + d, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ + d1);
             return;
         }
     }

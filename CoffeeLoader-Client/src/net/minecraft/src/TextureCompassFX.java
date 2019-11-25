@@ -16,7 +16,7 @@ public class TextureCompassFX extends TextureFX
         super(Item.compass.getIconIndex(null));
         field_4230_h = new int[256];
         mc = minecraft;
-        field_1128_f = 1;
+        tileImage = 1;
         try
         {
             BufferedImage bufferedimage = ImageIO.read((net.minecraft.client.Minecraft.class).getResource("/gui/items.png"));

@@ -14,7 +14,7 @@ public class InventoryPlayer
         armorInventory = new ItemStack[4];
         craftingInventory = new ItemStack[4];
         currentItem = 0;
-        field_845_f = false;
+        inventoryChanged = false;
         player = entityplayer;
     }
 
@@ -424,7 +424,7 @@ public class InventoryPlayer
 
     public void onInventoryChanged()
     {
-        field_845_f = true;
+        inventoryChanged = true;
     }
 
     public boolean compareInventory(InventoryPlayer inventoryplayer)
@@ -498,5 +498,5 @@ public class InventoryPlayer
     public int currentItem;
     private EntityPlayer player;
     public ItemStack draggingItemStack;
-    public boolean field_845_f;
+    public boolean inventoryChanged;
 }

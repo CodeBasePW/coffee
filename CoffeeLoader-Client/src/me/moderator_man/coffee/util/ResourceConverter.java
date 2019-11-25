@@ -7,7 +7,9 @@ import java.net.URL;
 
 import org.json.JSONObject;
 
-public class ResourceConverter
+import me.moderator_man.coffee.api.util.IResourceConverter;
+
+public class ResourceConverter implements IResourceConverter
 {
 	private JSONObject meta = new JSONObject();
 	
@@ -31,7 +33,7 @@ public class ResourceConverter
 		return String.format("http://resources.download.minecraft.net/%s/%s", sub, hash);
 	}
 	
-	private String get(String url)
+	public String get(String url)
 	{
 		try
 		{

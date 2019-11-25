@@ -6,6 +6,8 @@ package net.minecraft.src;
 import java.util.*;
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.Minecraft;
+
 public class WorldRenderer
 {
 
@@ -138,6 +140,9 @@ public class WorldRenderer
                         }
                         if(j3 == i2)
                         {
+                        	//TODO: moderator_man
+                        	/*if (block.hasCustomSheet)
+                        		GL11.glBindTexture(3553, Minecraft.getMinecraft().renderEngine.getTexture(block.customSheet));*/
                             flag1 |= renderblocks.renderBlockByRenderType(block, l2, j2, k2);
                         }
                     }

@@ -10,19 +10,22 @@ import java.util.ServiceLoader;
 
 import javax.imageio.ImageIO;
 
+import me.moderator_man.coffee.api.ICoffeeLoader;
 import me.moderator_man.coffee.impl.CoffeeMod;
 import me.moderator_man.coffee.impl.ModManager;
+import me.moderator_man.coffee.impl.block.BlockRegistry;
 import me.moderator_man.coffee.impl.crafting.CraftingManager;
 import me.moderator_man.coffee.impl.debug.DebugMod;
-import me.moderator_man.coffee.impl.textures.TextureManager;
+import me.moderator_man.coffee.impl.event.EventManager;
 import me.moderator_man.coffee.util.ResourceConverter;
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityMobs;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemBlock;
 import net.minecraft.src.Render;
 
-public class CoffeeLoader
+public class CoffeeLoader implements ICoffeeLoader
 {
 	private static CoffeeLoader instance = new CoffeeLoader();
 	
@@ -33,25 +36,27 @@ public class CoffeeLoader
 	
 	private final String version = "1.0";
 	
-	private TextureManager textureManager;
+	private String modsDirectory;
 	private ModManager modManager;
 	private CraftingManager craftingManager;
 	private ResourceConverter resourceConverter;
+	private EventManager eventManager;
+	private BlockRegistry blockRegistry;
 	
 	public CoffeeLoader()
 	{
-		textureManager = new TextureManager();
 		modManager = new ModManager();
 		craftingManager = new CraftingManager();
 		resourceConverter = new ResourceConverter();
+		eventManager = new EventManager();
+		blockRegistry = new BlockRegistry();
 	}
 	
 	public void onEnable(String[] args)
 	{
 		resourceConverter.onEnable();
 		
-		String dir = "mods";
-		
+		String dir = Minecraft.getAppDir("coffee") + "/mods";
 		File fDir = new File(dir);
 		if (!fDir.exists())
 			fDir.mkdir();
@@ -59,6 +64,7 @@ public class CoffeeLoader
 			System.out.println("The mods directory specified isn't a real directory. Loading can't continue.");
 			return;
 		}
+		modsDirectory = fDir.getAbsolutePath();
 		
 		for (int i = 0; i < args.length; i++)
 		{
@@ -102,9 +108,9 @@ public class CoffeeLoader
 		return version;
 	}
 	
-	public TextureManager getTextureManager()
+	public String getModsDirectory()
 	{
-		return textureManager;
+		return modsDirectory;
 	}
 	
 	public ModManager getModManager()
@@ -120,6 +126,16 @@ public class CoffeeLoader
 	public ResourceConverter getResourceConverter()
 	{
 		return resourceConverter;
+	}
+	
+	public EventManager getEventManager()
+	{
+		return eventManager;
+	}
+	
+	public BlockRegistry getBlockRegistry()
+	{
+		return blockRegistry;
 	}
 	
 	public void loadMods(String dir)

@@ -1,7 +1,5 @@
 package me.moderator_man.coffee.api.item;
 
-import me.moderator_man.coffee.impl.block.CoffeeBlock;
-
 public interface ICoffeeItem
 {
 	public void onAttack();
@@ -11,6 +9,4 @@ public interface ICoffeeItem
 	public void onDrop();
 	public void onPickup();
 	public void onCrafted();
-	
-	public boolean canHarvestBlock(CoffeeBlock block);
 }

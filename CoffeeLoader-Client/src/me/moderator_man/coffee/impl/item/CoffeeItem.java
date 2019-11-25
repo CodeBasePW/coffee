@@ -2,7 +2,6 @@ package me.moderator_man.coffee.impl.item;
 
 import me.moderator_man.coffee.CoffeeLoader;
 import me.moderator_man.coffee.api.item.ICoffeeItem;
-import me.moderator_man.coffee.impl.block.CoffeeBlock;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
@@ -21,6 +20,12 @@ public abstract class CoffeeItem extends Item implements ICoffeeItem
 		customSheet = texture;
 	}
 	
+	public CoffeeItem setStackSize(int stackSize)
+	{
+		maxStackSize = stackSize;
+		return this;
+	}
+	
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer, World world, int i, int j, int k, int l)
 	{
 		onUse();
@@ -29,6 +34,7 @@ public abstract class CoffeeItem extends Item implements ICoffeeItem
 	
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
+		System.out.println("CoffeeItem#onItemRightClick");
 		onUse();
         return itemstack;
     }
@@ -43,12 +49,14 @@ public abstract class CoffeeItem extends Item implements ICoffeeItem
 		onHitBlock(i, j, k);
     }
 	
-	public boolean canHarvestBlock(Block block) { return false; }
+	public boolean canHarvestBlock(Block block) { return canHarvestBlock(block.blockID); }
 	
-	public boolean canHarvestBlock(CoffeeBlock block) { return false; }
+	public boolean canHarvestBlock(int blockID) { return false; }
 	
 	public void onAttack() {}
+	
 	public void onUse() {}
+	
 	public void onHitEntity() {}
 	public void onHitBlock(int x, int y, int z) {}
 	

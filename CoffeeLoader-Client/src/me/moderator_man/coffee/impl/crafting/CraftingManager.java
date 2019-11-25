@@ -2,21 +2,24 @@ package me.moderator_man.coffee.impl.crafting;
 
 import java.util.ArrayList;
 
-public class CraftingManager
+import me.moderator_man.coffee.api.ICraftingManager;
+import me.moderator_man.coffee.api.crafting.ICoffeeRecipe;
+
+public class CraftingManager implements ICraftingManager
 {
-	private ArrayList<CoffeeRecipe> recipes;
+	private ArrayList<ICoffeeRecipe> recipes;
 	
 	public CraftingManager()
 	{
-		recipes = new ArrayList<CoffeeRecipe>();
+		recipes = new ArrayList<ICoffeeRecipe>();
 	}
 	
-	public void registerRecipe(CoffeeRecipe recipe)
+	public void registerRecipe(ICoffeeRecipe recipe)
 	{
 		recipes.add(recipe);
 	}
 	
-	public ArrayList<CoffeeRecipe> getAllRecipes()
+	public ArrayList<ICoffeeRecipe> getAllRecipes()
 	{
 		return recipes;
 	}

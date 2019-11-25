@@ -92,7 +92,7 @@ public class World
         field_1054_E = System.currentTimeMillis();
         autosavePeriod = 40;
         rand = new Random();
-        field_1033_r = false;
+        isNewWorld = false;
         worldAccesses = new ArrayList();
         randomSeed = 0L;
         sizeOnDisk = 0L;
@@ -129,7 +129,7 @@ public class World
         field_1054_E = System.currentTimeMillis();
         autosavePeriod = 40;
         rand = new Random();
-        field_1033_r = false;
+        isNewWorld = false;
         worldAccesses = new ArrayList();
         randomSeed = 0L;
         sizeOnDisk = 0L;
@@ -179,7 +179,7 @@ public class World
         field_1054_E = System.currentTimeMillis();
         autosavePeriod = 40;
         rand = new Random();
-        field_1033_r = false;
+        isNewWorld = false;
         worldAccesses = new ArrayList();
         randomSeed = 0L;
         sizeOnDisk = 0L;
@@ -214,7 +214,7 @@ public class World
         }
         Object obj = new WorldProvider();
         File file2 = new File(field_9432_t, "level.dat");
-        field_1033_r = !file2.exists();
+        isNewWorld = !file2.exists();
         if(file2.exists())
         {
             try
@@ -299,7 +299,7 @@ public class World
     {
     }
 
-    public void func_608_a(EntityPlayer entityplayer)
+    public void spawnPlayerWithLoadedChunks(EntityPlayer entityplayer)
     {
         try
         {
@@ -1354,10 +1354,10 @@ public class World
 
     public void func_667_e(Entity entity)
     {
-        func_4084_a(entity, true);
+        updateEntityWithOptionalForce(entity, true);
     }
 
-    public void func_4084_a(Entity entity, boolean flag)
+    public void updateEntityWithOptionalForce(Entity entity, boolean flag)
     {
         int i = MathHelper.floor_double(entity.posX);
         int j = MathHelper.floor_double(entity.posZ);
@@ -1375,7 +1375,7 @@ public class World
         {
             if(entity.ridingEntity != null)
             {
-                entity.func_350_p();
+                entity.updateRidden();
             } else
             {
                 entity.onUpdate();
@@ -2328,7 +2328,7 @@ public class World
         worldTime = l;
     }
 
-    public void func_705_f(Entity entity)
+    public void joinEntityInSurroundings(Entity entity)
     {
         int i = MathHelper.floor_double(entity.posX / 16D);
         int j = MathHelper.floor_double(entity.posZ / 16D);
@@ -2426,7 +2426,7 @@ public class World
     public int spawnX;
     public int spawnY;
     public int spawnZ;
-    public boolean field_1033_r;
+    public boolean isNewWorld;
     public final WorldProvider worldProvider;
     protected List worldAccesses;
     private IChunkProvider chunkProvider;

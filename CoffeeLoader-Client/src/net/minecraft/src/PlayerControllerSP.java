@@ -112,12 +112,12 @@ public class PlayerControllerSP extends PlayerController
         if(field_1071_f <= 0.0F)
         {
             mc.ingameGUI.field_6446_b = 0.0F;
-            mc.field_6323_f.field_1450_i = 0.0F;
+            mc.renderGlobal.field_1450_i = 0.0F;
         } else
         {
             float f1 = field_1070_g + (field_1071_f - field_1070_g) * f;
             mc.ingameGUI.field_6446_b = f1;
-            mc.field_6323_f.field_1450_i = f1;
+            mc.renderGlobal.field_1450_i = f1;
         }
     }
 
@@ -131,7 +131,7 @@ public class PlayerControllerSP extends PlayerController
         super.func_717_a(world);
     }
 
-    public void func_6474_c()
+    public void updateController()
     {
         field_1070_g = field_1071_f;
         mc.sndManager.func_4033_c();

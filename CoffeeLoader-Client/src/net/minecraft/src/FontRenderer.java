@@ -125,12 +125,91 @@ public class FontRenderer
         renderString(s, i + 1, j + 1, k, true);
         drawString(s, i, j, k);
     }
-
+    
+    //TODO: moderator_man
+    public void drawStringWithShadow(String s, int i, int j, int k, float scale)
+    {
+        renderString(s, i + 1, j + 1, k, true, scale);
+        drawString(s, i, j, k, scale);
+    }
+    
+    //TODO: moderator_man
+    float defaultScale = 1f;
+    
     public void drawString(String s, int i, int j, int k)
     {
         renderString(s, i, j, k, false);
     }
+    
+    //TODO: moderator_man
+    public void drawString(String s, int i, int j, int k, float scale)
+    {
+        renderString(s, i, j, k, false, scale);
+    }
+    
+    //TODO: moderator_man
+    public void renderString(String s, int i, int j, int k, boolean flag, float scale)
+    {
+        if(s == null)
+        {
+            return;
+        }
+        if(flag)
+        {
+            int l = k & 0xff000000;
+            k = (k & 0xfcfcfc) >> 2;
+            k += l;
+        }
+        GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, field_1308_a);
+        float f = (float)(k >> 16 & 0xff) / 255F;
+        float f1 = (float)(k >> 8 & 0xff) / 255F;
+        float f2 = (float)(k & 0xff) / 255F;
+        float f3 = (float)(k >> 24 & 0xff) / 255F;
+        if(f3 == 0.0F)
+        {
+            f3 = 1.0F;
+        }
+        GL11.glColor4f(f, f1, f2, f3);
+        buffer.clear();
+        GL11.glPushMatrix();
+        GL11.glScalef(scale, scale, scale);
+        GL11.glTranslatef(i, j, 0.0F);
+        for(int i1 = 0; i1 < s.length(); i1++)
+        {
+            for(; s.charAt(i1) == '\247' && s.length() > i1 + 1; i1 += 2)
+            {
+                int j1 = "0123456789abcdef".indexOf(s.toLowerCase().charAt(i1 + 1));
+                if(j1 < 0 || j1 > 15)
+                {
+                    j1 = 15;
+                }
+                buffer.put(field_1310_c + 256 + j1 + (flag ? 16 : 0));
+                if(buffer.remaining() == 0)
+                {
+                    buffer.flip();
+                    GL11.glCallLists(buffer);
+                    buffer.clear();
+                }
+            }
 
+            int k1 = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_'abcdefghijklmnopqrstuvwxyz{|}~\u2302\307\374\351\342\344\340\345\347\352\353\350\357\356\354\304\305\311\346\306\364\366\362\373\371\377\326\334\370\243\330\327\u0192\341\355\363\372\361\321\252\272\277\256\254\275\274\241\253\273".indexOf(s.charAt(i1));
+            if(k1 >= 0)
+            {
+                buffer.put(field_1310_c + k1 + 32);
+            }
+            if(buffer.remaining() == 0)
+            {
+                buffer.flip();
+                GL11.glCallLists(buffer);
+                buffer.clear();
+            }
+        }
+        
+        buffer.flip();
+        GL11.glCallLists(buffer);
+        GL11.glPopMatrix();
+    }
+    
     public void renderString(String s, int i, int j, int k, boolean flag)
     {
         if(s == null)

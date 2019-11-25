@@ -17,7 +17,7 @@ public class TextureWatchFX extends TextureFX
         field_4224_h = new int[256];
         field_4223_i = new int[256];
         field_4225_g = minecraft;
-        field_1128_f = 1;
+        tileImage = 1;
         try
         {
             BufferedImage bufferedimage = ImageIO.read((net.minecraft.client.Minecraft.class).getResource("/gui/items.png"));

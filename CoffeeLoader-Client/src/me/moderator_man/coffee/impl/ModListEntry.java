@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 
 import org.lwjgl.opengl.GL11;
 
+import me.moderator_man.coffee.api.ICoffeeMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.TexturePackBase;
 import net.minecraft.src.TexturePackDefault;
@@ -15,7 +16,7 @@ public class ModListEntry extends TexturePackBase
 	private int texturePackName = -1;
 	private BufferedImage field_6490_f;
 	
-	public ModListEntry(CoffeeMod mod)
+	public ModListEntry(ICoffeeMod mod)
 	{
 		try
 		{

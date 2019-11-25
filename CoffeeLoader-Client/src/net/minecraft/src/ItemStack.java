@@ -71,6 +71,9 @@ public final class ItemStack
 
     public boolean useItem(EntityPlayer entityplayer, World world, int i, int j, int k, int l)
     {
+    	//TODO: moderator_man
+    	if (getItem() == null)
+    		return false;
         return getItem().onItemUse(this, entityplayer, world, i, j, k, l);
     }
 
@@ -101,6 +104,9 @@ public final class ItemStack
 
     public int getMaxStackSize()
     {
+    	//TODO: moderator_man
+    	if (getItem() == null)
+    		return 64;
         return getItem().getItemStackLimit();
     }
 

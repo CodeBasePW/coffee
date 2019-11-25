@@ -8,18 +8,10 @@ import java.util.Random;
 public class Item
 {
 	//TODO: moderator_man
-	protected boolean hasCustomSheet = false;
-	protected String customSheet = "";
-	public boolean hasCustomSheet()
-	{
-		return hasCustomSheet;
-	}
-	public String getCustomSheet()
-	{
-		return customSheet;
-	}
+	public boolean hasCustomSheet = false;
+	public String customSheet = "";
 	
-    protected Item(int i)
+    public Item(int i)
     {
         maxStackSize = 64;
         maxDamage = 32;

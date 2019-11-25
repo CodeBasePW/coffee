@@ -20,7 +20,7 @@ public class LoadingScreenRenderer
         mc = minecraft;
     }
 
-    public void func_596_a(String s)
+    public void printText(String s)
     {
         field_1005_e = false;
         func_597_c(s);

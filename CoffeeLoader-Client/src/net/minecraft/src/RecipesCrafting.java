@@ -4,7 +4,7 @@ package net.minecraft.src;
 // Decompiler options: packimports(3) braces deadcode 
 
 import me.moderator_man.coffee.CoffeeLoader;
-import me.moderator_man.coffee.impl.crafting.CoffeeRecipe;
+import me.moderator_man.coffee.api.crafting.ICoffeeRecipe;
 
 public class RecipesCrafting
 {
@@ -25,7 +25,7 @@ public class RecipesCrafting
             "##", "##", Character.valueOf('#'), Block.planks
         });
         
-        for (CoffeeRecipe recipe : CoffeeLoader.getCoffeeLoader().getCraftingManager().getAllRecipes())
+        for (ICoffeeRecipe recipe : CoffeeLoader.getCoffeeLoader().getCraftingManager().getAllRecipes())
         	craftingmanager.addRecipe(recipe.getStack(), recipe.getRecipe());
     }
 }

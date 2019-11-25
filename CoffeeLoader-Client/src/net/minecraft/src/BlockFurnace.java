@@ -72,6 +72,7 @@ public class BlockFurnace extends BlockContainer
             return blockIndexInTexture + 16;
         } else
         {
+        	//TODO: moderator_man (blockIndexInTexture = 46)
             return blockIndexInTexture - 1;
         }
     }

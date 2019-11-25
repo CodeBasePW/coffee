@@ -28,7 +28,7 @@ public class EntityRenderer
         field_1395_a = new ItemRenderer(minecraft);
     }
 
-    public void func_911_a()
+    public void updateRenderer()
     {
         field_1382_n = field_1381_o;
         float f = mc.theWorld.getLightBrightness(MathHelper.floor_double(mc.thePlayer.posX), MathHelper.floor_double(mc.thePlayer.posY), MathHelper.floor_double(mc.thePlayer.posZ));
@@ -36,20 +36,20 @@ public class EntityRenderer
         float f2 = f * (1.0F - f1) + f1;
         field_1381_o += (f2 - field_1381_o) * 0.1F;
         field_1386_j++;
-        field_1395_a.func_895_a();
+        field_1395_a.updateEquippedItem();
         if(mc.field_6288_M)
         {
             func_916_c();
         }
     }
 
-    public void func_910_a(float f)
+    public void getMouseOver(float f)
     {
         if(mc.thePlayer == null)
         {
             return;
         }
-        double d = mc.field_6327_b.getBlockReachDistance();
+        double d = mc.playerController.getBlockReachDistance();
         mc.objectMouseOver = mc.thePlayer.rayTrace(d, f);
         double d1 = d;
         Vec3D vec3d = mc.thePlayer.getPosition(f);
@@ -57,7 +57,7 @@ public class EntityRenderer
         {
             d1 = mc.objectMouseOver.hitVec.distanceTo(vec3d);
         }
-        if(mc.field_6327_b instanceof PlayerControllerTest)
+        if(mc.playerController instanceof PlayerControllerTest)
         {
             d1 = d = 32D;
         } else
@@ -105,7 +105,7 @@ public class EntityRenderer
             }
         }
 
-        if(field_1385_k != null && !(mc.field_6327_b instanceof PlayerControllerTest))
+        if(field_1385_k != null && !(mc.playerController instanceof PlayerControllerTest))
         {
             mc.objectMouseOver = new MovingObjectPosition(field_1385_k);
         }
@@ -296,13 +296,13 @@ public class EntityRenderer
         {
             if(System.currentTimeMillis() - field_1384_l > 500L)
             {
-                mc.func_6252_g();
+                mc.displayInGameMenu();
             }
         } else
         {
             field_1384_l = System.currentTimeMillis();
         }
-        if(mc.field_6289_L)
+        if(mc.inGameHasFocus)
         {
             mc.mouseHelper.func_772_c();
             float f1 = mc.gameSettings.mouseSensitivity * 0.6F + 0.2F;
@@ -352,10 +352,10 @@ public class EntityRenderer
 
     public void func_4134_c(float f)
     {
-        func_910_a(f);
+        getMouseOver(f);
         EntityPlayerSP entityplayersp = mc.thePlayer;
-        RenderGlobal renderglobal = mc.field_6323_f;
-        EffectRenderer effectrenderer = mc.field_6321_h;
+        RenderGlobal renderglobal = mc.renderGlobal;
+        EffectRenderer effectrenderer = mc.effectRenderer;
         double d = ((EntityPlayer) (entityplayersp)).lastTickPosX + (((EntityPlayer) (entityplayersp)).posX - ((EntityPlayer) (entityplayersp)).lastTickPosX) * (double)f;
         double d1 = ((EntityPlayer) (entityplayersp)).lastTickPosY + (((EntityPlayer) (entityplayersp)).posY - ((EntityPlayer) (entityplayersp)).lastTickPosY) * (double)f;
         double d2 = ((EntityPlayer) (entityplayersp)).lastTickPosZ + (((EntityPlayer) (entityplayersp)).posZ - ((EntityPlayer) (entityplayersp)).lastTickPosZ) * (double)f;
@@ -386,8 +386,8 @@ public class EntityRenderer
             func_4140_a(1);
             Frustrum frustrum = new Frustrum();
             frustrum.func_343_a(d, d1, d2);
-            mc.field_6323_f.func_960_a(frustrum, f);
-            mc.field_6323_f.func_948_a(entityplayersp, false);
+            mc.renderGlobal.func_960_a(frustrum, f);
+            mc.renderGlobal.func_948_a(entityplayersp, false);
             func_4140_a(0);
             GL11.glEnable(2912);
             GL11.glBindTexture(3553, mc.renderEngine.getTexture("/terrain.png"));
@@ -398,7 +398,7 @@ public class EntityRenderer
             effectrenderer.func_1187_b(entityplayersp, f);
             RenderHelper.disableStandardItemLighting();
             func_4140_a(0);
-            effectrenderer.func_1189_a(entityplayersp, f);
+            effectrenderer.renderParticles(entityplayersp, f);
             if(mc.objectMouseOver != null && entityplayersp.isInsideOfMaterial(Material.water))
             {
                 GL11.glDisable(3008);
@@ -488,7 +488,7 @@ public class EntityRenderer
             float f1 = field_1383_m.nextFloat();
             if(l1 > 0)
             {
-                mc.field_6321_h.func_1192_a(new EntityRainFX(world, (float)i1 + f, (double)((float)k1 + 0.1F) - Block.blocksList[l1].minY, (float)j1 + f1));
+                mc.effectRenderer.func_1192_a(new EntityRainFX(world, (float)i1 + f, (double)((float)k1 + 0.1F) - Block.blocksList[l1].minY, (float)j1 + f1));
             }
         }
 

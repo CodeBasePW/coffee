@@ -8,12 +8,11 @@ import java.util.Random;
 
 public class Block
 {
-	protected boolean hasCustomSheet = false;
-	protected String customSheet = "";
-	public boolean hasCustomSheet() { return hasCustomSheet; }
-	public String getCustomSheet() { return customSheet; }
+	public boolean hasCustomSheet = false;
+	public String customSheet = "";
 	
-    protected Block(int i, Material material)
+	//TODO: moderator_man (was protected)
+    public Block(int i, Material material)
     {
         stepSound = soundPowderFootstep;
         field_357_bm = 1.0F;
@@ -610,7 +609,8 @@ public class Block
     public static final Block pumpkinLantern;
     public int blockIndexInTexture;
     public final int blockID;
-    protected float blockHardness;
+    //TODO: moderator_man (was protected)
+    public float blockHardness;
     protected float blockResistance;
     public double minX;
     public double minY;

@@ -73,6 +73,18 @@ public class Gui
     {
         fontrenderer.drawStringWithShadow(s, i, j, k);
     }
+    
+    //TODO: moderator_man
+    public void drawCenteredString(FontRenderer fontrenderer, String s, int i, int j, int k, float scale)
+    {
+        fontrenderer.drawStringWithShadow(s, (i - fontrenderer.getStringWidth(s) / 2) - (int) scale, j, k, scale);
+    }
+
+    //TODO: moderator_man
+    public void drawString(FontRenderer fontrenderer, String s, int i, int j, int k, float scale)
+    {
+        fontrenderer.drawStringWithShadow(s, i, j, k, scale);
+    }
 
     public void drawTexturedModalRect(int i, int j, int k, int l, int i1, int j1)
     {

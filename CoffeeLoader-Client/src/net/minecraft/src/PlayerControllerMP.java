@@ -125,12 +125,12 @@ public class PlayerControllerMP extends PlayerController
         if(field_9442_f <= 0.0F)
         {
             mc.ingameGUI.field_6446_b = 0.0F;
-            mc.field_6323_f.field_1450_i = 0.0F;
+            mc.renderGlobal.field_1450_i = 0.0F;
         } else
         {
             float f1 = field_1080_g + (field_9442_f - field_1080_g) * f;
             mc.ingameGUI.field_6446_b = f1;
-            mc.field_6323_f.field_1450_i = f1;
+            mc.renderGlobal.field_1450_i = f1;
         }
     }
 
@@ -144,7 +144,7 @@ public class PlayerControllerMP extends PlayerController
         super.func_717_a(world);
     }
 
-    public void func_6474_c()
+    public void updateController()
     {
         func_730_e();
         field_1080_g = field_9442_f;
@@ -180,7 +180,7 @@ public class PlayerControllerMP extends PlayerController
         return super.sendUseItem(entityplayer, world, itemstack);
     }
 
-    public EntityPlayer func_4087_b(World world)
+    public EntityPlayer createPlayer(World world)
     {
         return new EntityClientPlayerMP(mc, world, mc.field_6320_i, field_9438_k);
     }

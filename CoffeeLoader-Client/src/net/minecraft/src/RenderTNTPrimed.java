@@ -37,7 +37,7 @@ public class RenderTNTPrimed extends Render
         }
         float f3 = (1.0F - (((float)entitytntprimed.fuse - f1) + 1.0F) / 100F) * 0.8F;
         loadTexture("/terrain.png");
-        field_196_d.func_1227_a(Block.tnt);
+        field_196_d.renderBlockOnInventory(Block.tnt);
         if((entitytntprimed.fuse / 5) % 2 == 0)
         {
             GL11.glDisable(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/);
@@ -45,7 +45,7 @@ public class RenderTNTPrimed extends Render
             GL11.glEnable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
             GL11.glBlendFunc(770, 772);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, f3);
-            field_196_d.func_1227_a(Block.tnt);
+            field_196_d.renderBlockOnInventory(Block.tnt);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glDisable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
             GL11.glEnable(2896 /*GL_LIGHTING*/ /*GL_LIGHTING*/);

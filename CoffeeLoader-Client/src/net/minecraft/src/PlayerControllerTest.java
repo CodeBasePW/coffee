@@ -40,7 +40,7 @@ public class PlayerControllerTest extends PlayerController
         super.func_717_a(world);
     }
 
-    public void func_6474_c()
+    public void updateController()
     {
     }
 }

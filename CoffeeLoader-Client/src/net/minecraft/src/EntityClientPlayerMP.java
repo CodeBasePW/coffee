@@ -157,7 +157,7 @@ public class EntityClientPlayerMP extends EntityPlayerSP
         field_797_bg.addToSendQueue(new Packet18ArmAnimation(this, 1));
     }
 
-    public void func_9367_r()
+    public void onRespawn()
     {
         sendInventoryChanged();
         field_797_bg.addToSendQueue(new Packet9());

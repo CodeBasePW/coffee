@@ -11,7 +11,11 @@ public class ItemBlock extends Item
     {
         super(i);
         blockID = i + 256;
-        setIconIndex(Block.blocksList[i + 256].getBlockTextureFromSide(2));
+        try
+        {
+        	//TODO: moderator_man
+        	setIconIndex(Block.blocksList[i + 256].getBlockTextureFromSide(2));
+        } catch (Exception ex) {}
     }
 
     public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer, World world, int i, int j, int k, int l)

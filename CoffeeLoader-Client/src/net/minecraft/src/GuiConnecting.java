@@ -12,7 +12,7 @@ public class GuiConnecting extends GuiScreen
     public GuiConnecting(Minecraft minecraft, String s, int i)
     {
         cancelled = false;
-        minecraft.func_6261_a(null);
+        minecraft.changeWorld1(null);
         (new ThreadConnectToServer(this, minecraft, s, i)).start();
     }
 

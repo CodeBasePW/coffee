@@ -40,13 +40,13 @@ public class GuiIngameMenu extends GuiScreen
             {
                 mc.theWorld.sendQuittingDisconnectingPacket();
             }
-            mc.func_6261_a(null);
+            mc.changeWorld1(null);
             mc.displayGuiScreen(new GuiMainMenu());
         }
         if(guibutton.id == 4)
         {
             mc.displayGuiScreen(null);
-            mc.func_6259_e();
+            mc.setIngameFocus();
         }
     }
 

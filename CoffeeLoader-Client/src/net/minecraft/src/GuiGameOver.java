@@ -34,12 +34,12 @@ public class GuiGameOver extends GuiScreen
         if(guibutton.id != 0);
         if(guibutton.id == 1)
         {
-            mc.thePlayer.func_9367_r();
+            mc.thePlayer.onRespawn();
             mc.displayGuiScreen(null);
         }
         if(guibutton.id == 2)
         {
-            mc.func_6261_a(null);
+            mc.changeWorld1(null);
             mc.displayGuiScreen(new GuiMainMenu());
         }
     }

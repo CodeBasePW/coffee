@@ -31,7 +31,7 @@ public class EffectRenderer
         field_1728_b[i].add(entityfx);
     }
 
-    public void func_1193_a()
+    public void updateEffects()
     {
         for(int i = 0; i < 4; i++)
         {
@@ -49,7 +49,7 @@ public class EffectRenderer
 
     }
 
-    public void func_1189_a(Entity entity, float f)
+    public void renderParticles(Entity entity, float f)
     {
         float f1 = MathHelper.cos((entity.rotationYaw * 3.141593F) / 180F);
         float f2 = MathHelper.sin((entity.rotationYaw * 3.141593F) / 180F);
@@ -108,7 +108,7 @@ public class EffectRenderer
 
     }
 
-    public void func_1188_a(World world)
+    public void clearEffects(World world)
     {
         worldObj = world;
         for(int i = 0; i < 4; i++)

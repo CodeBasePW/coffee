@@ -16,7 +16,7 @@ public class EntitySpider extends EntityMobs
         field_9333_am = 0.8F;
     }
 
-    public double func_402_h()
+    public double getMountedYOffset()
     {
         return (double)height * 0.75D - 0.5D;
     }

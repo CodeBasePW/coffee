@@ -23,7 +23,7 @@ public class RenderFallingSand extends Render
         Block block = Block.blocksList[entityfallingsand.field_799_a];
         World world = entityfallingsand.func_465_i();
         GL11.glDisable(2896 /*GL_LIGHTING*/ /*GL_LIGHTING*/);
-        field_197_d.func_1243_a(block, world, MathHelper.floor_double(entityfallingsand.posX), MathHelper.floor_double(entityfallingsand.posY), MathHelper.floor_double(entityfallingsand.posZ));
+        field_197_d.renderBlockFallingSand(block, world, MathHelper.floor_double(entityfallingsand.posX), MathHelper.floor_double(entityfallingsand.posY), MathHelper.floor_double(entityfallingsand.posZ));
         GL11.glEnable(2896 /*GL_LIGHTING*/ /*GL_LIGHTING*/);
         GL11.glPopMatrix();
     }

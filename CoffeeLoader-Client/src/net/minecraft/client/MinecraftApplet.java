@@ -84,7 +84,7 @@ public class MinecraftApplet extends Applet
     {
         if(mc != null)
         {
-            mc.field_6316_m = false;
+            mc.isWorldLoaded = false;
         }
     }
 
@@ -92,7 +92,7 @@ public class MinecraftApplet extends Applet
     {
         if(mc != null)
         {
-            mc.field_6316_m = true;
+            mc.isWorldLoaded = true;
         }
     }
 

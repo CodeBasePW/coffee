@@ -38,7 +38,7 @@ public class GuiScreen extends Gui
         if(i == 1)
         {
             mc.displayGuiScreen(null);
-            mc.func_6259_e();
+            mc.setIngameFocus();
         }
     }
 

@@ -54,7 +54,7 @@ public class EntityMinecart extends Entity
         minecartType = i;
     }
 
-    public double func_402_h()
+    public double getMountedYOffset()
     {
         return (double)height * 0.0D - 0.30000001192092896D;
     }

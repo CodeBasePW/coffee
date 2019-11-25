@@ -134,7 +134,7 @@ public class GameSettings
         if(i == 9)
         {
             fancyGraphics = !fancyGraphics;
-            mc.field_6323_f.func_958_a();
+            mc.renderGlobal.func_958_a();
         }
         saveOptions();
     }
@@ -286,7 +286,10 @@ public class GameSettings
                 }
                 if(as[0].equals("lastServer"))
                 {
-                    field_12259_z = as[1];
+                    try
+                    {
+                    	field_12259_z = as[1];
+                    } catch (Exception ex) {}
                 }
                 int i = 0;
                 while(i < keyBindings.length) 

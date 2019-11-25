@@ -28,9 +28,9 @@ public class EntityPlayer extends EntityLiving
         texture = "/mob/char.png";
     }
 
-    public void func_350_p()
+    public void updateRidden()
     {
-        super.func_350_p();
+        super.updateRidden();
         field_775_e = field_774_f;
         field_774_f = 0.0F;
     }
@@ -294,7 +294,7 @@ public class EntityPlayer extends EntityLiving
         inventory.setInventorySlotContents(inventory.currentItem, null);
     }
 
-    public double func_388_v()
+    public double getYOffset()
     {
         return (double)(yOffset - 0.5F);
     }
@@ -324,7 +324,7 @@ public class EntityPlayer extends EntityLiving
         }
     }
 
-    public void func_9367_r()
+    public void onRespawn()
     {
     }
 

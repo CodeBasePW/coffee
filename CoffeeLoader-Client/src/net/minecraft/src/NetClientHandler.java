@@ -35,10 +35,10 @@ public class NetClientHandler extends NetHandler
 
     public void handleLogin(Packet1Login packet1login)
     {
-        mc.field_6327_b = new PlayerControllerMP(mc, this);
+        mc.playerController = new PlayerControllerMP(mc, this);
         worldClient = new WorldClient(this, packet1login.field_4074_d, packet1login.field_4073_e);
         worldClient.multiplayerWorld = true;
-        mc.func_6261_a(worldClient);
+        mc.changeWorld1(worldClient);
         mc.displayGuiScreen(new GuiDownloadTerrain(this));
         mc.thePlayer.field_620_ab = packet1login.protocolVersion;
         System.out.println((new StringBuilder()).append("clientEntityId: ").append(packet1login.protocolVersion).toString());
@@ -269,7 +269,7 @@ public class NetClientHandler extends NetHandler
     {
         netManager.networkShutdown("Got kicked");
         disconnected = true;
-        mc.func_6261_a(null);
+        mc.changeWorld1(null);
         mc.displayGuiScreen(new GuiConnectFailed("Disconnected by server", packet255kickdisconnect.reason));
     }
 
@@ -281,7 +281,7 @@ public class NetClientHandler extends NetHandler
         } else
         {
             disconnected = true;
-            mc.func_6261_a(null);
+            mc.changeWorld1(null);
             mc.displayGuiScreen(new GuiConnectFailed("Connection lost", s));
             return;
         }
@@ -310,7 +310,7 @@ public class NetClientHandler extends NetHandler
         if(entity != null)
         {
             worldClient.playSoundAtEntity(entity, "random.pop", 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-            mc.field_6321_h.func_1192_a(new EntityPickupFX(mc.theWorld, entity, ((Entity) (obj)), -0.5F));
+            mc.effectRenderer.func_1192_a(new EntityPickupFX(mc.theWorld, entity, ((Entity) (obj)), -0.5F));
             worldClient.func_710_c(packet22collect.collectedEntityId);
         }
     }

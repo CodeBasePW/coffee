@@ -25,7 +25,7 @@ public class PlayerController
 
     public boolean sendBlockRemoved(int i, int j, int k, int l)
     {
-        mc.field_6321_h.func_1186_a(i, j, k);
+        mc.effectRenderer.func_1186_a(i, j, k);
         World world = mc.theWorld;
         Block block = Block.blocksList[world.getBlockId(i, j, k)];
         int i1 = world.getBlockMetadata(i, j, k);
@@ -77,7 +77,7 @@ public class PlayerController
     {
     }
 
-    public void func_6474_c()
+    public void updateController()
     {
     }
 
@@ -106,7 +106,7 @@ public class PlayerController
         }
     }
 
-    public EntityPlayer func_4087_b(World world)
+    public EntityPlayer createPlayer(World world)
     {
         return new EntityPlayerSP(mc, world, mc.field_6320_i, world.worldProvider.field_4218_e);
     }

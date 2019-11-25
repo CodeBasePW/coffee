@@ -1124,9 +1124,9 @@ public class RenderGlobal
     {
         if(s != null)
         {
-            mc.ingameGUI.func_553_b((new StringBuilder()).append("C418 - ").append(s).toString());
+            mc.ingameGUI.setRecordPlayingMessage((new StringBuilder()).append("C418 - ").append(s).toString());
         }
-        mc.sndManager.func_331_a(s, i, j, k, 1.0F, 1.0F);
+        mc.sndManager.playStreaming(s, i, j, k, 1.0F, 1.0F);
     }
 
     public void playSound(String s, double d, double d1, double d2, 
@@ -1155,47 +1155,47 @@ public class RenderGlobal
         }
         if(s == "bubble")
         {
-            mc.field_6321_h.func_1192_a(new EntityBubbleFX(worldObj, d, d1, d2, d3, d4, d5));
+            mc.effectRenderer.func_1192_a(new EntityBubbleFX(worldObj, d, d1, d2, d3, d4, d5));
         } else
         if(s == "smoke")
         {
-            mc.field_6321_h.func_1192_a(new EntitySmokeFX(worldObj, d, d1, d2));
+            mc.effectRenderer.func_1192_a(new EntitySmokeFX(worldObj, d, d1, d2));
         } else
         if(s == "portal")
         {
-            mc.field_6321_h.func_1192_a(new EntityPortalFX(worldObj, d, d1, d2, d3, d4, d5));
+            mc.effectRenderer.func_1192_a(new EntityPortalFX(worldObj, d, d1, d2, d3, d4, d5));
         } else
         if(s == "explode")
         {
-            mc.field_6321_h.func_1192_a(new EntityExplodeFX(worldObj, d, d1, d2, d3, d4, d5));
+            mc.effectRenderer.func_1192_a(new EntityExplodeFX(worldObj, d, d1, d2, d3, d4, d5));
         } else
         if(s == "flame")
         {
-            mc.field_6321_h.func_1192_a(new EntityFlameFX(worldObj, d, d1, d2, d3, d4, d5));
+            mc.effectRenderer.func_1192_a(new EntityFlameFX(worldObj, d, d1, d2, d3, d4, d5));
         } else
         if(s == "lava")
         {
-            mc.field_6321_h.func_1192_a(new EntityLavaFX(worldObj, d, d1, d2));
+            mc.effectRenderer.func_1192_a(new EntityLavaFX(worldObj, d, d1, d2));
         } else
         if(s == "splash")
         {
-            mc.field_6321_h.func_1192_a(new EntitySplashFX(worldObj, d, d1, d2, d3, d4, d5));
+            mc.effectRenderer.func_1192_a(new EntitySplashFX(worldObj, d, d1, d2, d3, d4, d5));
         } else
         if(s == "largesmoke")
         {
-            mc.field_6321_h.func_1192_a(new EntitySmokeFX(worldObj, d, d1, d2, 2.5F));
+            mc.effectRenderer.func_1192_a(new EntitySmokeFX(worldObj, d, d1, d2, 2.5F));
         } else
         if(s == "reddust")
         {
-            mc.field_6321_h.func_1192_a(new EntityReddustFX(worldObj, d, d1, d2));
+            mc.effectRenderer.func_1192_a(new EntityReddustFX(worldObj, d, d1, d2));
         } else
         if(s == "snowballpoof")
         {
-            mc.field_6321_h.func_1192_a(new EntitySlimeFX(worldObj, d, d1, d2, Item.snowball));
+            mc.effectRenderer.func_1192_a(new EntitySlimeFX(worldObj, d, d1, d2, Item.snowball));
         } else
         if(s == "slime")
         {
-            mc.field_6321_h.func_1192_a(new EntitySlimeFX(worldObj, d, d1, d2, Item.slimeBall));
+            mc.effectRenderer.func_1192_a(new EntitySlimeFX(worldObj, d, d1, d2, Item.slimeBall));
         }
     }
 

@@ -28,9 +28,9 @@ public class EntityPlayerSP extends EntityPlayer
     public void func_418_b_()
     {
         super.func_418_b_();
-        field_9342_ah = field_787_a.field_1174_a;
-        field_9340_ai = field_787_a.field_1173_b;
-        isJumping = field_787_a.field_1176_d;
+        field_9342_ah = movementInput.field_1174_a;
+        field_9340_ai = movementInput.field_1173_b;
+        isJumping = movementInput.field_1176_d;
     }
 
     public void onLivingUpdate()
@@ -48,7 +48,7 @@ public class EntityPlayerSP extends EntityPlayer
                 field_4134_c = 1.0F;
                 field_9373_b = 10;
                 mc.sndManager.func_337_a("portal.travel", 1.0F, rand.nextFloat() * 0.4F + 0.8F);
-                mc.func_6237_k();
+                mc.usePortal();
             }
             field_9374_bx = false;
         } else
@@ -66,8 +66,8 @@ public class EntityPlayerSP extends EntityPlayer
         {
             field_9373_b--;
         }
-        field_787_a.func_797_a(this);
-        if(field_787_a.field_1175_e && field_9287_aY < 0.2F)
+        movementInput.func_797_a(this);
+        if(movementInput.field_1175_e && field_9287_aY < 0.2F)
         {
             field_9287_aY = 0.2F;
         }
@@ -76,12 +76,12 @@ public class EntityPlayerSP extends EntityPlayer
 
     public void func_458_k()
     {
-        field_787_a.func_798_a();
+        movementInput.func_798_a();
     }
 
-    public void func_460_a(int i, boolean flag)
+    public void handleKeyPress(int i, boolean flag)
     {
-        field_787_a.func_796_a(i, flag);
+        movementInput.func_796_a(i, flag);
     }
 
     public void writeEntityToNBT(NBTTagCompound nbttagcompound)
@@ -118,7 +118,7 @@ public class EntityPlayerSP extends EntityPlayer
 
     public void func_443_a_(Entity entity, int i)
     {
-        mc.field_6321_h.func_1192_a(new EntityPickupFX(mc.theWorld, entity, this, -0.5F));
+        mc.effectRenderer.func_1192_a(new EntityPickupFX(mc.theWorld, entity, this, -0.5F));
     }
 
     public int getPlayerArmorValue()
@@ -154,7 +154,7 @@ public class EntityPlayerSP extends EntityPlayer
 
     public boolean func_381_o()
     {
-        return field_787_a.field_1175_e;
+        return movementInput.field_1175_e;
     }
 
     public void func_4039_q()
@@ -186,12 +186,12 @@ public class EntityPlayerSP extends EntityPlayer
         }
     }
 
-    public void func_9367_r()
+    public void onRespawn()
     {
         mc.respawn();
     }
 
-    public MovementInput field_787_a;
+    public MovementInput movementInput;
     private Minecraft mc;
     public int field_9373_b;
     private boolean field_9374_bx;

@@ -1,20 +1,21 @@
 package me.moderator_man.coffee.impl.crafting;
 
-import me.moderator_man.coffee.impl.item.CoffeeStack;
+import me.moderator_man.coffee.api.crafting.ICoffeeRecipe;
+import me.moderator_man.coffee.impl.item.CoffeeItemStack;
 import net.minecraft.src.ItemStack;
 
-public class CoffeeRecipe
+public class CoffeeRecipe implements ICoffeeRecipe
 {
-	private CoffeeStack stack;
+	private CoffeeItemStack stack;
 	private Object[] recipe;
 	
-	public CoffeeRecipe(CoffeeStack stack, Object[] recipe)
+	public CoffeeRecipe(CoffeeItemStack stack, Object[] recipe)
 	{
 		this.stack = stack;
 		this.recipe = recipe;
 	}
 	
-	public CoffeeStack getCoffeeStack()
+	public CoffeeItemStack getCoffeeStack()
 	{
 		return stack;
 	}

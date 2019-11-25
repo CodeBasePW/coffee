@@ -17,7 +17,7 @@ public class RenderItem extends Render
         field_194_c = 0.75F;
     }
 
-    public void func_165_a(EntityItem entityitem, double d, double d1, double d2, 
+    public void doRenderItem(EntityItem entityitem, double d, double d1, double d2, 
             float f, float f1)
     {
         random.setSeed(187L);
@@ -60,7 +60,7 @@ public class RenderItem extends Render
                     float f9 = ((random.nextFloat() * 2.0F - 1.0F) * 0.2F) / f4;
                     GL11.glTranslatef(f5, f7, f9);
                 }
-                renderBlocks.func_1227_a(Block.blocksList[itemstack.itemID]);
+                renderBlocks.renderBlockOnInventory(Block.blocksList[itemstack.itemID]);
                 GL11.glPopMatrix();
             }
 
@@ -72,7 +72,6 @@ public class RenderItem extends Render
             {
                 loadTexture("/terrain.png");
             } else if (Item.itemsList[itemstack.itemID].hasCustomSheet) {
-            	//TODO: moderator_man
             	loadTexture(Item.itemsList[itemstack.itemID].customSheet);
             } else {
                 loadTexture("/gui/items.png");
@@ -117,10 +116,27 @@ public class RenderItem extends Render
         {
             return;
         }
+        //TODO: moderator_man
+        
+        if (itemstack.itemID <= Block.blocksList.length)
+        {
+        	boolean null1 = itemstack == null;
+            boolean null2 = Block.blocksList[itemstack.itemID] == null;
+            if (null1 || null2)
+            {
+            	System.out.println(String.format("Error: (null1=%s,null2=%s)", null1, null2));
+            	return;
+            }
+        }
+        
         if(itemstack.itemID < 256 && RenderBlocks.func_1219_a(Block.blocksList[itemstack.itemID].getRenderType()))
         {
             int k = itemstack.itemID;
-            renderengine.bindTexture(renderengine.getTexture("/terrain.png"));
+            //TODO: moderator_man
+            if (Block.blocksList[itemstack.itemID].hasCustomSheet)
+            	renderengine.bindTexture(renderengine.getTexture(Block.blocksList[itemstack.itemID].customSheet));
+            else
+            	renderengine.bindTexture(renderengine.getTexture("/terrain.png"));
             Block block = Block.blocksList[k];
             GL11.glPushMatrix();
             GL11.glTranslatef(i - 2, j + 3, 0.0F);
@@ -130,15 +146,14 @@ public class RenderItem extends Render
             GL11.glRotatef(45F, 0.0F, 1.0F, 0.0F);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glScalef(1.0F, 1.0F, 1.0F);
-            renderBlocks.func_1227_a(block);
+            renderBlocks.renderBlockOnInventory(block);
             GL11.glPopMatrix();
-        } else
-        if(itemstack.getIconIndex() >= 0)
+        } else if(itemstack.getIconIndex() >= 0)
         {
             GL11.glDisable(2896 /*GL_LIGHTING*/ /*GL_LIGHTING*/);
             if(itemstack.itemID < 256)
             {
-                renderengine.bindTexture(renderengine.getTexture("/terrain.png"));
+            	renderengine.bindTexture(renderengine.getTexture("/terrain.png"));
             } else if (Item.itemsList[itemstack.itemID].hasCustomSheet) {
             	//TODO: moderator_man
             	renderengine.bindTexture(renderengine.getTexture(Item.itemsList[itemstack.itemID].customSheet));
@@ -214,7 +229,7 @@ public class RenderItem extends Render
     public void doRender(Entity entity, double d, double d1, double d2, 
             float f, float f1)
     {
-        func_165_a((EntityItem)entity, d, d1, d2, f, f1);
+        doRenderItem((EntityItem)entity, d, d1, d2, f, f1);
     }
 
     private RenderBlocks renderBlocks;

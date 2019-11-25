@@ -133,10 +133,10 @@ public abstract class Entity
 
     public void onUpdate()
     {
-        func_391_y();
+        onEntityUpdate();
     }
 
-    public void func_391_y()
+    public void onEntityUpdate()
     {
         if(ridingEntity != null && ridingEntity.isDead)
         {
@@ -841,7 +841,7 @@ public abstract class Entity
         return !isDead;
     }
 
-    public boolean func_345_I()
+    public boolean isEntityInsideOpaqueBlock()
     {
         int i = MathHelper.floor_double(posX);
         int j = MathHelper.floor_double(posY + (double)func_373_s());
@@ -859,7 +859,7 @@ public abstract class Entity
         return null;
     }
 
-    public void func_350_p()
+    public void updateRidden()
     {
         if(ridingEntity.isDead)
         {
@@ -870,7 +870,7 @@ public abstract class Entity
         motionY = 0.0D;
         motionZ = 0.0D;
         onUpdate();
-        ridingEntity.func_366_i_();
+        ridingEntity.updateRiderPosition();
         field_667_e += ridingEntity.rotationYaw - ridingEntity.prevRotationYaw;
         minecartType += ridingEntity.rotationPitch - ridingEntity.prevRotationPitch;
         for(; field_667_e >= 180D; field_667_e -= 360D) { }
@@ -902,17 +902,17 @@ public abstract class Entity
         rotationPitch += d1;
     }
 
-    public void func_366_i_()
+    public void updateRiderPosition()
     {
-        riddenByEntity.setPosition(posX, posY + func_402_h() + riddenByEntity.func_388_v(), posZ);
+        riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
     }
 
-    public double func_388_v()
+    public double getYOffset()
     {
         return (double)yOffset;
     }
 
-    public double func_402_h()
+    public double getMountedYOffset()
     {
         return (double)height * 0.75D;
     }

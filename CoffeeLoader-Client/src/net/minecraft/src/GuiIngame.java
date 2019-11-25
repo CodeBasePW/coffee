@@ -6,9 +6,12 @@ package net.minecraft.src;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
-import net.minecraft.client.Minecraft;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import me.moderator_man.coffee.impl.event.events.EventOSDHook;
+import net.minecraft.client.Minecraft;
 
 public class GuiIngame extends Gui
 {
@@ -19,8 +22,8 @@ public class GuiIngame extends Gui
         rand = new Random();
         field_933_a = null;
         updateCounter = 0;
-        field_9420_i = "";
-        field_9419_j = 0;
+        recordPlaying = "";
+        recordPlayingUpFor = 0;
         field_931_c = 1.0F;
         mc = minecraft;
     }
@@ -31,21 +34,21 @@ public class GuiIngame extends Gui
         int k = scaledresolution.getScaledWidth();
         int l = scaledresolution.getScaledHeight();
         FontRenderer fontrenderer = mc.fontRenderer;
-        mc.field_9243_r.func_905_b();
+        mc.entityRenderer.func_905_b();
         GL11.glEnable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
         if(mc.gameSettings.fancyGraphics)
         {
-            func_4064_a(mc.thePlayer.getEntityBrightness(f), k, l);
+            renderVignette(mc.thePlayer.getEntityBrightness(f), k, l);
         }
         ItemStack itemstack = mc.thePlayer.inventory.armorItemInSlot(3);
         if(!mc.gameSettings.thirdPersonView && itemstack != null && itemstack.itemID == Block.pumpkin.blockID)
         {
-            func_4063_a(k, l);
+            renderPumpkinBlur(k, l);
         }
         float f1 = mc.thePlayer.field_4133_d + (mc.thePlayer.field_4134_c - mc.thePlayer.field_4133_d) * f;
         if(f1 > 0.0F)
         {
-            func_4065_b(f1, k, l);
+            renderPortalOverlay(f1, k, l);
         }
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/ /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("/gui/gui.png"));
@@ -66,7 +69,7 @@ public class GuiIngame extends Gui
         int i1 = mc.thePlayer.health;
         int j1 = mc.thePlayer.field_9335_K;
         rand.setSeed(updateCounter * 0x4c627);
-        if(mc.field_6327_b.func_6469_d())
+        if(mc.playerController.func_6469_d())
         {
             int k1 = mc.thePlayer.getPlayerArmorValue();
             for(int i2 = 0; i2 < 10; i2++)
@@ -147,11 +150,12 @@ public class GuiIngame extends Gui
         {
             int k2 = (k / 2 - 90) + l1 * 20 + 2;
             int l3 = l - 16 - 3;
-            func_554_a(l1, k2, l3, f);
+            renderInventorySlot(l1, k2, l3, f);
         }
 
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(32826 /*GL_RESCALE_NORMAL_EXT*/ /*GL_RESCALE_NORMAL_EXT*/);
+        new EventOSDHook().call();
         if(Keyboard.isKeyDown(61))
         {
             fontrenderer.drawStringWithShadow((new StringBuilder()).append("Minecraft Alpha v1.2.6 (").append(mc.field_6292_I).append(")").toString(), 2, 2, 0xffffff);
@@ -173,9 +177,9 @@ public class GuiIngame extends Gui
         {
             fontrenderer.drawStringWithShadow("Minecraft Alpha v1.2.6", 2, 2, 0xffffff);
         }
-        if(field_9419_j > 0)
+        if(recordPlayingUpFor > 0)
         {
-            float f2 = (float)field_9419_j - f;
+            float f2 = (float)recordPlayingUpFor - f;
             int i3 = (int)((f2 * 256F) / 20F);
             if(i3 > 255)
             {
@@ -188,7 +192,7 @@ public class GuiIngame extends Gui
                 GL11.glEnable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
                 GL11.glBlendFunc(770, 771);
                 int i4 = Color.HSBtoRGB(f2 / 50F, 0.7F, 0.6F) & 0xffffff;
-                fontrenderer.drawString(field_9420_i, -fontrenderer.getStringWidth(field_9420_i) / 2, -4, i4 + (i3 << 24));
+                fontrenderer.drawString(recordPlaying, -fontrenderer.getStringWidth(recordPlaying) / 2, -4, i4 + (i3 << 24));
                 GL11.glDisable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
                 GL11.glPopMatrix();
             }
@@ -244,7 +248,7 @@ public class GuiIngame extends Gui
         GL11.glDisable(3042 /*GL_BLEND*/ /*GL_BLEND*/);
     }
 
-    private void func_4063_a(int i, int j)
+    private void renderPumpkinBlur(int i, int j)
     {
         GL11.glDisable(2929 /*GL_DEPTH_TEST*/ /*GL_DEPTH_TEST*/);
         GL11.glDepthMask(false);
@@ -265,7 +269,7 @@ public class GuiIngame extends Gui
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    private void func_4064_a(float f, int i, int j)
+    private void renderVignette(float f, int i, int j)
     {
         f = 1.0F - f;
         if(f < 0.0F)
@@ -295,7 +299,7 @@ public class GuiIngame extends Gui
         GL11.glBlendFunc(770, 771);
     }
 
-    private void func_4065_b(float f, int i, int j)
+    private void renderPortalOverlay(float f, int i, int j)
     {
         f *= f;
         f *= f;
@@ -323,7 +327,7 @@ public class GuiIngame extends Gui
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    private void func_554_a(int i, int j, int k, float f)
+    private void renderInventorySlot(int i, int j, int k, float f)
     {
         ItemStack itemstack = mc.thePlayer.inventory.mainInventory[i];
         if(itemstack == null)
@@ -347,11 +351,11 @@ public class GuiIngame extends Gui
         itemRenderer.renderItemOverlayIntoGUI(mc.fontRenderer, mc.renderEngine, itemstack, j, k);
     }
 
-    public void func_555_a()
+    public void updateTick()
     {
-        if(field_9419_j > 0)
+        if(recordPlayingUpFor > 0)
         {
-            field_9419_j--;
+            recordPlayingUpFor--;
         }
         updateCounter++;
         for(int i = 0; i < chatMessageList.size(); i++)
@@ -374,10 +378,10 @@ public class GuiIngame extends Gui
         for(; chatMessageList.size() > 50; chatMessageList.remove(chatMessageList.size() - 1)) { }
     }
 
-    public void func_553_b(String s)
+    public void setRecordPlayingMessage(String s)
     {
-        field_9420_i = (new StringBuilder()).append("Now playing: ").append(s).toString();
-        field_9419_j = 60;
+        recordPlaying = (new StringBuilder()).append("Now playing: ").append(s).toString();
+        recordPlayingUpFor = 60;
     }
 
     private static RenderItem itemRenderer = new RenderItem();
@@ -386,8 +390,8 @@ public class GuiIngame extends Gui
     private Minecraft mc;
     public String field_933_a;
     private int updateCounter;
-    private String field_9420_i;
-    private int field_9419_j;
+    private String recordPlaying;
+    private int recordPlayingUpFor;
     public float field_6446_b;
     float field_931_c;
 

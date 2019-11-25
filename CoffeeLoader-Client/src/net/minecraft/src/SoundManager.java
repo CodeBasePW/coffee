@@ -25,7 +25,7 @@ public class SoundManager
         field_583_i = rand.nextInt(12000);
     }
 
-    public void func_340_a(GameSettings gamesettings)
+    public void loadSoundSettings(GameSettings gamesettings)
     {
         soundPoolStreaming.field_1657_b = false;
         options = gamesettings;
@@ -152,7 +152,7 @@ public class SoundManager
         }
     }
 
-    public void func_331_a(String s, float f, float f1, float f2, float f3, float f4)
+    public void playStreaming(String s, float f, float f1, float f2, float f3, float f4)
     {
         if(!loaded || options.soundVolume == 0.0F)
         {
